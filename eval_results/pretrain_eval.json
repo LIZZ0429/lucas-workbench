@@ -1,0 +1,8 @@
+{
+  "accuracy": 13.573543928923987,
+  "config": "configs/cicids2017/netmamba_fscil_cicids2017.py",
+  "checkpoint": "/root/autodl-tmp/NetMamba/assets/pretrain-weight/pre-train.pth",
+  "dataset": "CICIDS2017",
+  "batch_size": 64,
+  "num_samples": 10130
+}

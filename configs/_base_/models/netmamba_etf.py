@@ -1,0 +1,41 @@
+# model settings
+model = dict(
+    type='NetMambaFSCIL',
+    backbone=dict(
+        type='NetMamba',
+        embed_dim=256,
+        num_layers=4,
+        ssm_cfg=dict(
+            expand=2,
+            d_state=16,
+            dt_rank='auto',
+        ),
+    ),
+    neck=dict(
+        type='DualSelectiveSSMProjector',
+        in_channels=256,
+        out_channels=512,
+        mid_channels=512,
+        d_state=256,
+        d_rank=64,
+        ssm_expand_ratio=2,
+        num_layers=2,
+        num_layers_new=2,
+        feat_size=1,
+        use_new_branch=True,
+        loss_weight_supp=0.001,
+        loss_weight_supp_novel=0.001,
+        loss_weight_sep=0.001,
+        loss_weight_sep_new=0.001,
+        param_avg_dim='0-1',
+        detach_residual=False,
+    ),
+    head=dict(
+        type='ETFHead',
+        num_classes=12,
+        base_classes=4,
+        in_channels=512,
+        with_bn=False,
+        with_avg_pool=False,
+    )
+)
